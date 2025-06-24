@@ -105,8 +105,8 @@ def main():
         
         /* File uploader styling */
         .stFileUploader > div {
-            background: rgba(255, 255, 255, 0.1) !important;
-            border: 2px dashed rgba(255, 255, 255, 0.3) !important;
+            background: rgba(255, 255, 255, 0.15) !important;
+            border: 2px dashed rgba(255, 255, 255, 0.4) !important;
             border-radius: 8px !important;
             padding: 20px !important;
         }
@@ -117,7 +117,29 @@ def main():
         }
         
         .stFileUploader > div > div {
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+        
+        .stFileUploader > div > div > div {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+            border-radius: 6px !important;
+        }
+        
+        .stFileUploader > div > div > div > div {
             color: rgba(255, 255, 255, 0.8) !important;
+        }
+        
+        /* File uploader button styling */
+        .stFileUploader button {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            border-radius: 6px !important;
+        }
+        
+        .stFileUploader button:hover {
+            background: rgba(255, 255, 255, 0.3) !important;
         }
         
         /* Slider styling */
