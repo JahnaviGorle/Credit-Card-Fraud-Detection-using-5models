@@ -98,7 +98,9 @@ def preprocess_data(df, test_size=0.2, random_state=42, apply_smote=True, scaler
     if apply_smote:
         try:
             smote = SMOTE(random_state=random_state)
-            X_train_scaled, y_train = smote.fit_resample(X_train_scaled, y_train)
+            X_train_resampled, y_train_resampled = smote.fit_resample(X_train_scaled, y_train)
+            X_train_scaled = X_train_resampled
+            y_train = y_train_resampled
             st.info("Applied SMOTE to balance the dataset")
         except Exception as e:
             st.warning(f"Could not apply SMOTE: {str(e)}")

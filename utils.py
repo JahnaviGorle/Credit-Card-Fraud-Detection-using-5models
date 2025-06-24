@@ -175,9 +175,9 @@ def generate_sample_data(n_samples=1000, fraud_ratio=0.1):
         transaction = [time] + list(features) + [amount, 1]  # Class 1 = fraud
         data.append(transaction)
     
-    # Create DataFrame
+    # Create DataFrame with explicit column assignment
     df = pd.DataFrame(data)
-    df.columns = feature_names
+    df.columns = pd.Index(feature_names)
     
     return df
 
@@ -230,17 +230,25 @@ def to_excel(df):
         
     Returns:
     --------
-    bytes
+    bytes or None
         Excel file as bytes
     """
-    output = BytesIO()
     try:
-        # Use ExcelWriter with BytesIO buffer
-        writer = pd.ExcelWriter(output, engine='xlsxwriter')
-        df.to_excel(writer, sheet_name='Sheet1', index=False)
-        writer.close()
-        processed_data = output.getvalue()
-        return processed_data
+        # Create a temporary file path approach for better compatibility
+        import tempfile
+        import os
+        
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.xlsx') as tmp_file:
+            df.to_excel(tmp_file.name, engine='xlsxwriter', index=False)
+            
+        # Read the file back as bytes
+        with open(tmp_file.name, 'rb') as f:
+            data = f.read()
+            
+        # Clean up temporary file
+        os.unlink(tmp_file.name)
+        return data
+        
     except Exception as e:
         st.error(f"Error creating Excel file: {str(e)}")
         return None
