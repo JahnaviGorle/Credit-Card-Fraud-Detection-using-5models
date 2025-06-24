@@ -38,6 +38,34 @@ def main():
     # Render header
     render_header()
     
+    # Add global background styling to match navigation
+    st.markdown("""
+    <style>
+    /* Main content area styling to match blue theme */
+    .main .block-container {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 15px !important;
+        padding: 2rem !important;
+        margin-top: 1rem !important;
+        backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        box-shadow: 0 8px 32px rgba(46, 95, 159, 0.2) !important;
+    }
+    
+    /* Text color adjustments for better contrast */
+    .stMarkdown, .stText, h1, h2, h3, h4, h5, h6, p {
+        color: white !important;
+    }
+    
+    /* Card styling in main content */
+    div[style*="background-color: rgba(255, 255, 255, 0.1)"] {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        box-shadow: 0 4px 20px rgba(46, 95, 159, 0.2) !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
     # Modern Sidebar Navigation
     with st.sidebar:
         # Custom CSS for modern blue sidebar

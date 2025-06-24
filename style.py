@@ -6,22 +6,20 @@ def apply_glassy_style():
     """
     glassy_css = """
     <style>
-        /* Glassy look CSS */
+        /* Blue themed background to match navigation */
         .stApp {
-            background: linear-gradient(135deg, rgba(10, 10, 30, 0.9), rgba(10, 20, 40, 0.9)), 
-                        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            background-size: cover;
+            background: linear-gradient(135deg, #4A90E2 0%, #357ABD 50%, #2E5F9F 100%);
             background-attachment: fixed;
         }
         
         div.css-1r6slb0.e1tzin5v2 {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
             padding: 20px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px 0 rgba(46, 95, 159, 0.3);
         }
         
         div.stTabs [data-baseweb="tab-list"] {
@@ -45,8 +43,8 @@ def apply_glassy_style():
         
         /* Cards design */
         .glass-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
             padding: 20px;
             margin: 10px 0;
             backdrop-filter: blur(5px);
