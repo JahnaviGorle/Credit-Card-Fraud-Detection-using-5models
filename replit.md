@@ -135,3 +135,4 @@ Preferred communication style: Simple, everyday language.
 - June 24, 2025: Initial setup complete
 - June 24, 2025: Removed Credit Card Fraud Detection Features section from home page per user request
 - June 24, 2025: Fixed Python 3.11 compatibility issues and installed all required ML dependencies
+- June 24, 2025: Enhanced home page to display all available pages with detailed descriptions and features

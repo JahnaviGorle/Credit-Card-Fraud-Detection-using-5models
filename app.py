@@ -119,48 +119,104 @@ def show_home_page():
     """Display the home page"""
     st.title("Welcome to Credit Card Fraud Detection System")
     
-    col1, col2 = st.columns([2, 1])
+    # Main description
+    st.markdown("""
+    ### 🛡️ Advanced Machine Learning Protection
+    
+    This comprehensive fraud detection system employs multiple machine learning algorithms 
+    to identify potentially fraudulent credit card transactions with high accuracy.
+    """)
+    
+    # Navigation cards for all pages
+    st.markdown("### 📋 Available Pages")
+    
+    # Create columns for page cards
+    col1, col2, col3 = st.columns(3)
     
     with col1:
         st.markdown("""
-        ### 🛡️ Advanced Machine Learning Protection
+        <div style="background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <h4 style="margin-top: 0; color: #2E86C1;">📊 Data Analysis</h4>
+            <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">Upload your CSV data or generate sample datasets. Explore data distributions and view transaction samples.</p>
+            <ul style="color: rgba(255,255,255,0.7); font-size: 0.9em;">
+                <li>Upload CSV files</li>
+                <li>Generate sample data</li>
+                <li>View data statistics</li>
+                <li>Explore distributions</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
         
-        This comprehensive fraud detection system employs multiple machine learning algorithms 
-        to identify potentially fraudulent credit card transactions with high accuracy.
-        
-        #### 🔥 Key Features:
-        - **Multiple ML Models**: Logistic Regression, Decision Trees, Random Forest, XGBoost, and Deep Learning
-        - **Real-time Analysis**: Instant fraud probability scoring
-        - **Interactive Visualizations**: Comprehensive data exploration and model performance analysis
-        - **Professional Interface**: Modern glass-morphism design with intuitive navigation
-        - **Data Flexibility**: Upload your own data or generate sample datasets
-        
-        #### 🚀 Getting Started:
-        1. **Upload Data**: Use the sidebar to upload your CSV file or generate sample data
-        2. **Explore Data**: Navigate to Data Analysis to understand your dataset
-        3. **Train Models**: Go to Model Training to build and compare ML models
-        4. **View Results**: Check Results page for detailed performance metrics
-        5. **Detect Fraud**: Use the Fraud Detection tool for real-time analysis
-        """)
-        
-
+        st.markdown("""
+        <div style="background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <h4 style="margin-top: 0; color: #E74C3C;">🔍 Fraud Detection</h4>
+            <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">Use trained models to detect fraud in real-time. Input transaction data and get instant fraud probability scores.</p>
+            <ul style="color: rgba(255,255,255,0.7); font-size: 0.9em;">
+                <li>Real-time analysis</li>
+                <li>Fraud probability scoring</li>
+                <li>Model explanations</li>
+                <li>Transaction classification</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
     
     with col2:
-        st.markdown("### 📊 System Status")
+        st.markdown("""
+        <div style="background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <h4 style="margin-top: 0; color: #27AE60;">🤖 Model Training</h4>
+            <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">Train multiple machine learning models and compare their performance on your fraud detection dataset.</p>
+            <ul style="color: rgba(255,255,255,0.7); font-size: 0.9em;">
+                <li>5 ML algorithms</li>
+                <li>Hyperparameter tuning</li>
+                <li>SMOTE balancing</li>
+                <li>Training progress</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
         
-        # Display current data status
+    with col3:
+        st.markdown("""
+        <div style="background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <h4 style="margin-top: 0; color: #F39C12;">📈 Results</h4>
+            <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">View comprehensive model performance metrics, confusion matrices, and feature importance analysis.</p>
+            <ul style="color: rgba(255,255,255,0.7); font-size: 0.9em;">
+                <li>Performance metrics</li>
+                <li>Confusion matrices</li>
+                <li>Feature importance</li>
+                <li>Model comparison</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # System status section
+    st.markdown("---")
+    st.markdown("### 📊 System Status")
+    
+    status_col1, status_col2, status_col3 = st.columns(3)
+    
+    with status_col1:
         if st.session_state.data is not None:
             st.success("✅ Data Loaded")
             st.info(f"📁 {st.session_state.stats['rows']:,} transactions")
             st.info(f"🚨 {st.session_state.stats['fraud_percentage']:.2f}% fraud rate")
         else:
             st.warning("⚠️ No data loaded")
-        
-        # Display model status
+    
+    with status_col2:
         if st.session_state.models:
             st.success(f"🤖 {len(st.session_state.models)} models trained")
+            best_model = max(st.session_state.metrics.items(), key=lambda x: x[1]['accuracy'])
+            st.info(f"🏆 Best: {best_model[0]} ({best_model[1]['accuracy']:.2%})")
         else:
             st.info("🔄 No models trained yet")
+    
+    with status_col3:
+        st.markdown("""
+        <div style="background-color: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; text-align: center;">
+            <h4 style="margin-top: 0;">Quick Start</h4>
+            <p style="margin: 0; color: rgba(255,255,255,0.8);">Use the sidebar to select a page and get started with your fraud detection analysis!</p>
+        </div>
+        """, unsafe_allow_html=True)
 
 def show_data_analysis_page():
     """Display the data analysis page"""
