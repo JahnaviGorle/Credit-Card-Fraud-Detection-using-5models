@@ -40,21 +40,69 @@ def main():
     
     # Sidebar for navigation and controls
     with st.sidebar:
-        st.title("Navigation")
+        # Enhanced Navigation Header
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 15px; margin-bottom: 25px; text-align: center; box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);">
+            <h2 style="color: white; margin: 0; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">🧭 Navigation</h2>
+            <p style="color: rgba(255,255,255,0.8); margin: 5px 0 0 0; font-size: 0.9em;">Choose your destination</p>
+        </div>
+        """, unsafe_allow_html=True)
         
-        # Main navigation
+        # Custom styled navigation menu
+        st.markdown("""
+        <style>
+        .nav-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .nav-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+        }
+        .nav-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 1em;
+        }
+        .nav-item.active .nav-text {
+            color: white;
+            font-weight: 600;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        
+        # Main navigation with enhanced styling
         page = st.selectbox(
             "Choose a page:",
-            ["🏠 Home", "📊 Data Analysis", "🤖 Model Training", "📈 Results", "🔍 Fraud Detection"]
+            ["🏠 Home", "📊 Data Analysis", "🤖 Model Training", "📈 Results", "🔍 Fraud Detection"],
+            label_visibility="collapsed"
         )
         
-        st.markdown("---")
+        # Enhanced Data Source Section
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #2E86C1 0%, #16A085 100%); padding: 18px; border-radius: 12px; margin: 20px 0; text-align: center; box-shadow: 0 6px 25px rgba(46, 134, 193, 0.3);">
+            <h3 style="color: white; margin: 0; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">📊 Data Source</h3>
+            <p style="color: rgba(255,255,255,0.8); margin: 5px 0 0 0; font-size: 0.85em;">Configure your dataset</p>
+        </div>
+        """, unsafe_allow_html=True)
         
-        # Data source selection
-        st.subheader("Data Source")
         data_source = st.radio(
             "Select data source:",
-            ["Upload CSV File", "Generate Sample Data"]
+            ["Upload CSV File", "Generate Sample Data"],
+            label_visibility="collapsed"
         )
         
         # Initialize session state
@@ -69,27 +117,42 @@ def main():
         if 'training_times' not in st.session_state:
             st.session_state.training_times = {}
         
-        # Handle data loading
+        # Handle data loading with enhanced styling
         if data_source == "Upload CSV File":
+            st.markdown("""
+            <div style="background: rgba(255, 255, 255, 0.05); border: 2px dashed rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 20px; margin: 15px 0; text-align: center; backdrop-filter: blur(10px);">
+                <h4 style="color: rgba(255,255,255,0.9); margin-top: 0;">📁 Upload CSV File</h4>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.9em; margin-bottom: 15px;">Drag and drop your CSV file here</p>
+                <small style="color: rgba(255,255,255,0.6);">Limit 200MB per file • CSV format required</small>
+            </div>
+            """, unsafe_allow_html=True)
+            
             uploaded_file = st.file_uploader(
                 "Choose a CSV file",
                 type="csv",
-                help="Upload a credit card transaction dataset with a 'Class' column"
+                help="Upload a credit card transaction dataset with a 'Class' column",
+                label_visibility="collapsed"
             )
             
             if uploaded_file is not None:
-                if st.session_state.data is None or st.button("Reload Data"):
+                if st.session_state.data is None or st.button("🔄 Reload Data", type="primary"):
                     with st.spinner("Loading data..."):
                         st.session_state.data, st.session_state.stats = load_and_inspect_data(uploaded_file)
                         if st.session_state.data is not None:
                             st.success("Data loaded successfully!")
         
         else:  # Generate Sample Data
-            st.subheader("Sample Data Parameters")
+            st.markdown("""
+            <div style="background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%); padding: 16px; border-radius: 12px; margin: 15px 0; text-align: center; box-shadow: 0 6px 25px rgba(231, 76, 60, 0.3);">
+                <h4 style="color: white; margin: 0; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">🎲 Sample Data Parameters</h4>
+                <p style="color: rgba(255,255,255,0.8); margin: 5px 0 0 0; font-size: 0.85em;">Generate synthetic dataset</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
             n_samples = st.slider("Number of samples", 1000, 10000, 5000, 500)
             fraud_ratio = st.slider("Fraud ratio", 0.01, 0.2, 0.1, 0.01)
             
-            if st.button("Generate Sample Data"):
+            if st.button("🎯 Generate Sample Data", type="primary"):
                 with st.spinner("Generating sample data..."):
                     st.session_state.data = generate_sample_data(n_samples, fraud_ratio)
                     st.session_state.stats = {
