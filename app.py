@@ -130,10 +130,11 @@ def show_home_page():
     # Navigation cards for all pages
     st.markdown("### 📋 Available Pages")
     
-    # Create columns for page cards
-    col1, col2, col3 = st.columns(3)
+    # Create 2x2 grid layout for page cards
+    row1_col1, row1_col2 = st.columns(2)
+    row2_col1, row2_col2 = st.columns(2)
     
-    with col1:
+    with row1_col1:
         st.markdown("""
         <div style="background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1);">
             <h4 style="margin-top: 0; color: #2E86C1;">📊 Data Analysis</h4>
@@ -146,21 +147,8 @@ def show_home_page():
             </ul>
         </div>
         """, unsafe_allow_html=True)
-        
-        st.markdown("""
-        <div style="background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1);">
-            <h4 style="margin-top: 0; color: #E74C3C;">🔍 Fraud Detection</h4>
-            <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">Use trained models to detect fraud in real-time. Input transaction data and get instant fraud probability scores.</p>
-            <ul style="color: rgba(255,255,255,0.7); font-size: 0.9em;">
-                <li>Real-time analysis</li>
-                <li>Fraud probability scoring</li>
-                <li>Model explanations</li>
-                <li>Transaction classification</li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
     
-    with col2:
+    with row1_col2:
         st.markdown("""
         <div style="background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1);">
             <h4 style="margin-top: 0; color: #27AE60;">🤖 Model Training</h4>
@@ -173,8 +161,8 @@ def show_home_page():
             </ul>
         </div>
         """, unsafe_allow_html=True)
-        
-    with col3:
+    
+    with row2_col1:
         st.markdown("""
         <div style="background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1);">
             <h4 style="margin-top: 0; color: #F39C12;">📈 Results</h4>
@@ -184,6 +172,20 @@ def show_home_page():
                 <li>Confusion matrices</li>
                 <li>Feature importance</li>
                 <li>Model comparison</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    with row2_col2:
+        st.markdown("""
+        <div style="background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <h4 style="margin-top: 0; color: #E74C3C;">🔍 Fraud Detection</h4>
+            <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">Use trained models to detect fraud in real-time. Input transaction data and get instant fraud probability scores.</p>
+            <ul style="color: rgba(255,255,255,0.7); font-size: 0.9em;">
+                <li>Real-time analysis</li>
+                <li>Fraud probability scoring</li>
+                <li>Model explanations</li>
+                <li>Transaction classification</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
