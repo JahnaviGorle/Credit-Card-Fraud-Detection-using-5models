@@ -52,13 +52,7 @@ def main():
             background: linear-gradient(180deg, #4A90E2 0%, #357ABD 100%) !important;
         }
         
-        /* Sidebar Header */
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px 15px;
-            margin: -1rem -1rem 2rem -1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
+
         
         /* Section headers */
         .section-header {
@@ -169,13 +163,6 @@ def main():
             font-weight: 600 !important;
         }
         </style>
-        """, unsafe_allow_html=True)
-        
-        # Sidebar Header
-        st.markdown("""
-        <div class="sidebar-header">
-            <h2 style="color: white; margin: 0; font-weight: 600;">Sidebar</h2>
-        </div>
         """, unsafe_allow_html=True)
         
         # Navigation Menu with individual page items
