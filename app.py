@@ -136,7 +136,7 @@ def main():
             font-weight: 500 !important;
         }
         
-        /* Button styling */
+        /* Navigation Button styling */
         .stButton > button {
             background: rgba(255, 255, 255, 0.9) !important;
             color: #357ABD !important;
@@ -144,11 +144,29 @@ def main():
             border-radius: 8px !important;
             font-weight: 500 !important;
             transition: all 0.2s ease !important;
+            width: 100% !important;
+            text-align: left !important;
+            padding: 12px 16px !important;
+            margin: 4px 0 !important;
+            font-size: 14px !important;
         }
         
         .stButton > button:hover {
             background: rgba(255, 255, 255, 1) !important;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+            transform: translateX(2px) !important;
+        }
+        
+        .stButton > button:focus {
+            background: rgba(255, 255, 255, 1) !important;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3) !important;
+        }
+        
+        /* Active navigation item styling */
+        .stButton > button[aria-pressed="true"] {
+            background: rgba(255, 255, 255, 1) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+            font-weight: 600 !important;
         }
         </style>
         """, unsafe_allow_html=True)
@@ -161,13 +179,37 @@ def main():
         </div>
         """, unsafe_allow_html=True)
         
-        # Navigation Menu
+        # Navigation Menu with individual page items
         st.markdown('<div class="section-header">Navigation</div>', unsafe_allow_html=True)
         
-        page = st.selectbox(
-            "Choose a page:",
-            ["🏠 Home", "📊 Data Analysis", "🤖 Model Training", "📈 Results", "🔍 Fraud Detection"]
-        )
+        # Initialize current page in session state
+        if 'current_page' not in st.session_state:
+            st.session_state.current_page = "🏠 Home"
+        
+        # Create individual navigation items with active state styling
+        pages = [
+            ("🏠 Home", "🏠", "Home"),
+            ("📊 Data Analysis", "📊", "Data Analysis"), 
+            ("🤖 Model Training", "🤖", "Model Training"),
+            ("📈 Results", "📈", "Results"),
+            ("🔍 Fraud Detection", "🔍", "Fraud Detection")
+        ]
+        
+        for page_key, icon, label in pages:
+            # Add visual indicator for active page
+            is_active = st.session_state.current_page == page_key
+            
+            if is_active:
+                st.markdown(f"""
+                <div style="background: rgba(255, 255, 255, 1); border-radius: 8px; padding: 12px 16px; margin: 4px 0; color: #357ABD; font-weight: 600; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                    {icon} {label}
+                </div>
+                """, unsafe_allow_html=True)
+            else:
+                if st.button(f"{icon} {label}", key=f"nav_{page_key}", use_container_width=True):
+                    st.session_state.current_page = page_key
+        
+        page = st.session_state.current_page
         
         # Data Source Section
         st.markdown('<div class="section-header">Data Source</div>', unsafe_allow_html=True)
