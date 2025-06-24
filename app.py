@@ -43,13 +43,13 @@ def main():
         # Custom CSS for modern blue sidebar
         st.markdown("""
         <style>
-        /* Force sidebar background */
+        /* Force sidebar background to match dark theme */
         section[data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #4A90E2 0%, #357ABD 100%) !important;
+            background: linear-gradient(180deg, rgba(15, 15, 35, 0.95) 0%, rgba(20, 25, 45, 0.95) 100%) !important;
         }
         
         section[data-testid="stSidebar"] > div {
-            background: linear-gradient(180deg, #4A90E2 0%, #357ABD 100%) !important;
+            background: linear-gradient(180deg, rgba(15, 15, 35, 0.95) 0%, rgba(20, 25, 45, 0.95) 100%) !important;
         }
         
 
@@ -65,16 +65,16 @@ def main():
         
         /* Override Streamlit selectbox styling */
         .stSelectbox > div > div {
-            background-color: rgba(255, 255, 255, 0.95) !important;
-            border: none !important;
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
             border-radius: 8px !important;
-            color: #357ABD !important;
+            color: white !important;
             font-weight: 500 !important;
         }
         
         .stSelectbox > div > div:hover {
-            background-color: rgba(255, 255, 255, 1) !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+            background-color: rgba(255, 255, 255, 0.15) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
         }
         
         .stSelectbox label {
@@ -154,9 +154,9 @@ def main():
         
         /* Navigation Button styling */
         .stButton > button {
-            background: rgba(255, 255, 255, 0.9) !important;
-            color: #357ABD !important;
-            border: none !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
             border-radius: 8px !important;
             font-weight: 500 !important;
             transition: all 0.2s ease !important;
@@ -168,20 +168,20 @@ def main():
         }
         
         .stButton > button:hover {
-            background: rgba(255, 255, 255, 1) !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+            background: rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
             transform: translateX(2px) !important;
         }
         
         .stButton > button:focus {
-            background: rgba(255, 255, 255, 1) !important;
+            background: rgba(255, 255, 255, 0.2) !important;
             box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3) !important;
         }
         
         /* Active navigation item styling */
         .stButton > button[aria-pressed="true"] {
-            background: rgba(255, 255, 255, 1) !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+            background: rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
             font-weight: 600 !important;
         }
         </style>
@@ -209,7 +209,7 @@ def main():
             
             if is_active:
                 st.markdown(f"""
-                <div style="background: rgba(255, 255, 255, 1); border-radius: 8px; padding: 12px 16px; margin: 4px 0; color: #357ABD; font-weight: 600; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <div style="background: rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 12px 16px; margin: 4px 0; color: white; font-weight: 600; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.3);">
                     {icon} {label}
                 </div>
                 """, unsafe_allow_html=True)
