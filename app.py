@@ -175,7 +175,6 @@ def main():
         st.markdown("""
         <div class="sidebar-header">
             <h2 style="color: white; margin: 0; font-weight: 600;">Sidebar</h2>
-            <div style="width: 60px; height: 2px; background: white; margin-top: 8px; opacity: 0.8;"></div>
         </div>
         """, unsafe_allow_html=True)
         
