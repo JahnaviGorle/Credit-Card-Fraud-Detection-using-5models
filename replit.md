@@ -130,7 +130,8 @@ This is a comprehensive machine learning application for credit card fraud detec
 
 Preferred communication style: Simple, everyday language.
 
-## Changelog
+## Recent Changes
 
-Changelog:
-- June 24, 2025. Initial setup
+- June 24, 2025: Initial setup complete
+- June 24, 2025: Removed Credit Card Fraud Detection Features section from home page per user request
+- June 24, 2025: Fixed Python 3.11 compatibility issues and installed all required ML dependencies

@@ -143,9 +143,7 @@ def show_home_page():
         5. **Detect Fraud**: Use the Fraud Detection tool for real-time analysis
         """)
         
-        # Feature explanations
-        st.markdown("---")
-        st.markdown(explain_features(), unsafe_allow_html=True)
+
     
     with col2:
         st.markdown("### 📊 System Status")
