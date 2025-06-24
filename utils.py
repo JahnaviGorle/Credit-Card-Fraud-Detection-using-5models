@@ -176,7 +176,8 @@ def generate_sample_data(n_samples=1000, fraud_ratio=0.1):
         data.append(transaction)
     
     # Create DataFrame
-    df = pd.DataFrame(data, columns=feature_names)
+    df = pd.DataFrame(data)
+    df.columns = feature_names
     
     return df
 
@@ -234,8 +235,10 @@ def to_excel(df):
     """
     output = BytesIO()
     try:
-        with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-            df.to_excel(writer, sheet_name='Sheet1', index=False)
+        # Use ExcelWriter with BytesIO buffer
+        writer = pd.ExcelWriter(output, engine='xlsxwriter')
+        df.to_excel(writer, sheet_name='Sheet1', index=False)
+        writer.close()
         processed_data = output.getvalue()
         return processed_data
     except Exception as e:
